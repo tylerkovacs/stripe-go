@@ -18,10 +18,10 @@ type PackageDimensions struct {
 type ProductParams struct {
 	Params            `form:"*"`
 	Active            *bool              `form:"active"`
-	Attrs             []string           `form:"attributes"`
+	Attributes        []string           `form:"attributes"`
 	Caption           string             `form:"caption"`
 	DeactivateOn      []string           `form:"deactivate_on"`
-	Desc              string             `form:"description"`
+	Description       string             `form:"description"`
 	ID                string             `form:"id"`
 	Images            []string           `form:"images"`
 	Name              string             `form:"name"`
@@ -34,15 +34,15 @@ type ProductParams struct {
 // For more details see https://stripe.com/docs/api#products.
 type Product struct {
 	Active            bool               `json:"active"`
-	Attrs             []string           `json:"attributes"`
+	Attributes        []string           `json:"attributes"`
 	Caption           string             `json:"caption"`
 	Created           int64              `json:"created"`
 	DeactivateOn      []string           `json:"deactivate_on"`
-	Desc              string             `json:"description"`
+	Description       string             `json:"description"`
 	ID                string             `json:"id"`
 	Images            []string           `json:"images"`
-	Live              bool               `json:"livemode"`
-	Meta              map[string]string  `json:"metadata"`
+	Livemode          bool               `json:"livemode"`
+	Metadata          map[string]string  `json:"metadata"`
 	Name              string             `json:"name"`
 	PackageDimensions *PackageDimensions `json:"package_dimensions"`
 	Shippable         bool               `json:"shippable"`
@@ -54,7 +54,7 @@ type Product struct {
 // ProductList is a list of products as retrieved from a list endpoint.
 type ProductList struct {
 	ListMeta
-	Values []*Product `json:"data"`
+	Data []*Product `json:"data"`
 }
 
 // ProductListParams is the set of parameters that can be used when
