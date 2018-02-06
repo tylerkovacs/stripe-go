@@ -1,8 +1,12 @@
 package stripe
 
 type TopupParams struct {
-	Params `form:"*"`
-	Source *SourceParams `form:"*"` // SourceParams has custom encoding so brought to top level with "*"
+	Params    `form:"*"`
+	Amount    uint64        `form:"amount"`
+	Currency  Currency      `form:"currency"`
+	Desc      string        `json:"description"`
+	Source    *SourceParams `form:"*"` // SourceParams has custom encoding so brought to top level with "*"
+	Statement string        `json:"statement_descriptor"`
 }
 
 // SetSource adds valid sources to a TopupParams object,
@@ -11,6 +15,14 @@ func (p *TopupParams) SetSource(sp interface{}) error {
 	source, err := SourceParamsFor(sp)
 	p.Source = source
 	return err
+}
+
+// TopupListParams is the set of parameters that can be used when listing topups.
+// For more details see https://stripe.com/docs/api#list_topups.
+type TopupListParams struct {
+	ListParams   `form:"*"`
+	Created      int64             `form:"created"`
+	CreatedRange *RangeQueryParams `form:"created"`
 }
 
 // Topup is the resource representing a Stripe charge.
