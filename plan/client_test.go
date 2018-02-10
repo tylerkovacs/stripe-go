@@ -31,11 +31,11 @@ func TestPlanList(t *testing.T) {
 
 func TestPlanNew(t *testing.T) {
 	plan, err := New(&stripe.PlanParams{
-		Amount:   1,
+		Amount:   stripe.UInt64(1),
 		Currency: "usd",
-		ID:       "sapphire-elite",
+		ID:       stripe.String("sapphire-elite"),
 		Interval: "month",
-		Name:     "Sapphire Elite",
+		Name:     stripe.String("Sapphire Elite"),
 	})
 	assert.Nil(t, err)
 	assert.NotNil(t, plan)
@@ -43,7 +43,7 @@ func TestPlanNew(t *testing.T) {
 
 func TestPlanUpdate(t *testing.T) {
 	plan, err := Update("gold", &stripe.PlanParams{
-		Name: "Updated Name",
+		Name: stripe.String("Updated Name"),
 	})
 	assert.Nil(t, err)
 	assert.NotNil(t, plan)

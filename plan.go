@@ -31,7 +31,7 @@ type PlanList struct {
 // For more details see https://stripe.com/docs/api#list_plans.
 type PlanListParams struct {
 	ListParams   `form:"*"`
-	Created      int64             `form:"created"`
+	Created      *int64            `form:"created"`
 	CreatedRange *RangeQueryParams `form:"created"`
 }
 
@@ -39,13 +39,12 @@ type PlanListParams struct {
 // For more details see https://stripe.com/docs/api#create_plan and https://stripe.com/docs/api#update_plan.
 type PlanParams struct {
 	Params              `form:"*"`
-	Amount              uint64       `form:"amount"`
-	AmountZero          bool         `form:"amount,zero"`
+	Amount              *uint64      `form:"amount"`
 	Currency            Currency     `form:"currency"`
-	ID                  string       `form:"id"`
+	ID                  *string      `form:"id"`
 	Interval            PlanInterval `form:"interval"`
-	IntervalCount       uint64       `form:"interval_count"`
-	Name                string       `form:"name"`
-	StatementDescriptor string       `form:"statement_descriptor"`
-	TrialPeriodDays     uint64       `form:"trial_period_days"`
+	IntervalCount       *uint64      `form:"interval_count"`
+	Name                *string      `form:"name"`
+	StatementDescriptor *string      `form:"statement_descriptor"`
+	TrialPeriodDays     *uint64      `form:"trial_period_days"`
 }
